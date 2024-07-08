@@ -1,6 +1,5 @@
 var pulaLinha = function(){
     document.write("<br><hr>");
-    console.log("esta mensagem aparece apenas no log");
 }
 
 var mostra = function(frase){

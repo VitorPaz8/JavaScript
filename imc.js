@@ -1,19 +1,13 @@
-// Função para calcular o IMC
-function IMC(peso, altura) {
+function IMC(peso, altura){
 
     altura = altura / 100;
-
-    // Fórmula do IMC
-    let imc = peso / (altura * altura);
-
-    // Arredondando o IMC para duas casas decimais
+    var imc = peso / (altura * altura);
     return imc.toFixed(2);
 }
 
 function resultImc(imc) {
-    let mensagem;
+    var mensagem;
 
-    // Classificação do IMC
     if (imc < 18.5) {
         mensagem = "Você está abaixo do peso.";
     } else if (imc < 25) {
@@ -23,13 +17,11 @@ function resultImc(imc) {
     } else {
         mensagem = "Você está obeso.";
     }
-
     console.log(mensagem);
 }
 
-// Exemplo de uso:
-let peso = 90;
-let altura = 190;
+var peso = 90;
+var altura = 190;
 
-let imc = IMC(peso, altura);
+var imc = IMC(peso, altura);
 resultImc(imc);

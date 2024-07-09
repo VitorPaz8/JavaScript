@@ -1,1 +1,2 @@
-console.log("hello word")
+console.log("hello word");
+document.write("hello word");

@@ -1,42 +1,64 @@
-    /*esse codigo faz um jogo de adivinhação*/
+/*esse codigo faz um jogo de adivinhação onde o usuario possui 3 tentativas 
+de acertar o numero e também define de 0 até qual numero o sorteio vai*/
 
-    function mostre(frase){
-        document.write(frase + "<br>");
-    }
-    function sorteia(x){
-        var y = Math.round(Math.random() * x);
-        return y;
-    }
+function mostre(frase){
+    document.write(frase + "<br>");
+}
+function sorteia(sorteioMax){
+    var y = Math.floor(Math.random() * (sorteioMax + 1))
+    return y;
+}
 
-    var x = prompt("O sorteio sera até qual numero?")
+while (true) {
+
+    var sorteioMax = prompt("Até qual número você deseja sortear?");
     
-    if(isNaN(x)){
-        mostre("Apenas numeros são validos!!")
-    } else{
-        
-        var numero = sorteia(x)
-        var chute = prompt("Já pensei. Qual você acha que é?");
+    // Se o usuário cancelar o prompt
+    if (sorteioMax === null){
+        mostre("Operação cancelada.");
+        break;
+    }
+
+    sorteioMax = parseInt(sorteioMax);
+
+    if (isNaN(sorteioMax)){
+        alert("Por favor, insira apenas números.");
+    } else {
+        break;  // Sai do loop se o valor for válido
+    }
+}
     
-        if(chute == numero) {
+var numero = sorteia(sorteioMax);
+var tentativas = 3;
 
-        mostre("Uau! Você acertou, pois eu pensei no " + numero);
+for(var i = 1; i<=3; i++){
 
-        } else if(isNaN(chute)){
-            
-            mostre("Apenas numeros são validos!!")
+    var chute = prompt("Ok, você tem " + tentativas + " tentativas. Qual numero você acha que é?");
+    chute = parseInt(chute)
+    
+    if(chute == numero){
         
-        } else {
-            
-            if(chute > numero){
-        
-                mostre("Vovê errou! Seu chute foi maior que o numero pensado.")
-                mostre("Que era " + numero)
-        
-            } else{
-        
-                mostre("Você errou! Seu chute foi menor que o numero pensado.");
-                mostre("Que era " + numero)
-        
-            }
+        mostre("Uau, você acertou de " + i +"°, Parabens!!!");    
+        break;
+
+    } else if(isNaN(chute)){
+        tentativas--;
+        alert("Você acabou de perder uma tentetiva, apenas numeros serão validos!!");            
+    
+    } else if(sorteioMax < chute){
+        tentativas--;
+        alert("O numero não esta no sorteio")
+
+    } else if(chute != numero){
+        tentativas--;
+        if(chute > numero){
+            alert("Vovê errou! Seu chute foi maior que o numero pensado.");
+        } else{
+            alert("Você errou! Seu chute foi menor que o numero pensado.");
         }
     }
+}
+if(chute != numero){
+    mostre("Acabaram as tentativas, infelizmente você perdeu.");
+    mostre("O numero pensado era o " + numero)
+}
